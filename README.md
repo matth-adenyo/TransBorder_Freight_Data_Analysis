@@ -1,6 +1,10 @@
 # Trans-Border Freight Data Analysis
 Trans-Border Freight Data Analysis using the CRISP-DM methodology
 
+------------------------------------------------------------
+Project in Progress...
+------------------------------------------------------------
+
 ---
 ### Introduction:
 Trans-border freight (the movement of goods across international boundaries) is a cornerstone of the global economy. It facilitates trade, fosters economic growth, and promotes cultural exchange. In the United States, the Bureau of Transportation Statistics (BTS) provides comprehensive data that underscores the significance of trans-border freight, particularly with neighbouring countries Canada and Mexico.
