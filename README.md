@@ -97,8 +97,15 @@ This is a large dataset and when dealing with such datasets, loading everything 
 - The chunksize was then calculated by dividing the *budget memory* by the *approximate memory consumption of the single row* to get the number of rows that can fit within the allocated 10% memory budget.
 - The chunksize was converted to *integer* to get a whole number.
 
+After the above steps, next is to loop through all the folders to read the datasets. The folders in each year are named with the *first three letters of their month* and the datasets in them that I need for this project are named as **dot1-3_the month's number and last two digits of the year** (e.g. a data file in the folder *Jan 2020* inside the folder *2020* have the name *dot1_0120, dot2_0120,* and *dot3_0120*). To be able to read only these datasets from each folder, I mapped each month's name to its number (e.g. **Jan** as **01**, **Feb** as **02**), and extracted it together with the last two digits of the year.
 
-To be able to read the data from all sub-folders from the year folders (2020, 2021, 2022, 2023 and 2024), **for loop** was used. This is to iterate through all the sub-folders taking each year folder at a time. 
+Next, I used **For Loop** to iterate through the *year and months* folders to load only datasets that match the pattern **dot1-3** underscore the *extracted month's number and year number* with the help of **os** and **glob** library.
 
-Also, since there are five main folders (2020, 2021, 2022, 2023 and 2024) with each having folders of their month containing the datasets, I will use for loop to iterate through them.
-This is a large dataset and reading all at a go will put pressure on my machine so I will read it in chunks.
+Each dataset type (dot1, dot2 and dot3) is read in chunks and appended to the appropriate dataset type dictionary. Next, all dot1 were concatenated together, same as dot2 and dot3.
+
+While this was going on, the **tqdm** library was used to keep track of the progress.
+
+After concatenating all datasets, the shape of each was:
+- All dot1: (1500485, 14)
+- All dot2: (4101624, 14)
+- All dot3: (915116, 12)
