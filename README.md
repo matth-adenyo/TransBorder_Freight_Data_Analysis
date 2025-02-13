@@ -83,3 +83,22 @@ Each of these sub-folders contains 3 to 6 different CSV dataset files. The CSV f
 These datasets provide insights into freight movement, trade patterns, transportation modes, costs, and geographic distributions of cross-border goods.
 
 ### Data Inspection/Exploration
+The *dot1_MMYY, dot2_MMYY*, and *dot3_MMYY* are present in all the months for all the years. The *dot1_ytd_MMYY, dot2_ytd_MMYY*, and *dot3_ytd_MMYY* (where **MM** is the month, e.g January represented as **01** and **YY** is the last two digits of the year, e.g 2020 represented as **20**) are not present in some of the folders such as all months in 2024 and some months in 2023. In addition, March 2024 has only two datasets, *dot1_0324 and dot2_0324*. The dataset with **ytd** is cumulative. For example, **dot1_ytd_0420** in the April 2020 folder contains dataset from January 2020 to data. This means that to use the **ytd** data for analysis, one must use the one in the last month of that year since it is a cumulative dataset from the first month of that year to the last month of that same year.
+
+Furthermore, December 2022 contain additional datasets named *dot1_2022, dot2_2022*, and *dot3_2022* which don't have the month column. 
+
+In this project, dot1, dot2, and dot3 underscore the month and the year (that is **dot1_MMYY, dot2_MMYY, dot3_MMYY**) are used since they are the datasets that are consistent in all months of all years. All other datasets that don't follow this naming pattern are left out.
+
+### Data Reading
+This is a large dataset and when dealing with such datasets, loading everything into memory at once can put excessive pressure on system resources. This can lead to slow performance, memory errors, or even system crashes. To prevent this, the dataset is read in chunks rather than all at once.
+- First, instead of reading the full dataset, only a small sample is read (1000 rows) from *dot1_0420*. This was used to estimate how much memory a single row occupies without consuming too much memory upfront.
+- The total memory usage of the sample DataFrame was then computed and divided by 1000 to give the approximate memory consumption of a single row in bytes.
+- **psutil** library was then used to get the total available system RAM and 10% of that was allocated as budget memory for reading datasets to prevent excessive memory consumption.
+- The chunksize was then calculated by dividing the *budget memory* by the *approximate memory consumption of the single row* to get the number of rows that can fit within the allocated 10% memory budget.
+- The chunksize was converted to *integer* to get a whole number.
+
+
+To be able to read the data from all sub-folders from the year folders (2020, 2021, 2022, 2023 and 2024), **for loop** was used. This is to iterate through all the sub-folders taking each year folder at a time. 
+
+Also, since there are five main folders (2020, 2021, 2022, 2023 and 2024) with each having folders of their month containing the datasets, I will use for loop to iterate through them.
+This is a large dataset and reading all at a go will put pressure on my machine so I will read it in chunks.
