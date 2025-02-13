@@ -113,7 +113,7 @@ After concatenating all datasets, the shape of each was:
 - All dot3: (915116, 12)
 
 ## Data Preparation
-To prepare the way analysis, all the ***new datasets*** (all_dot1, all_dot2 and all_dot3) were merged to have one *final_data*. The shape of this was *(6517225, 15)*.
+To prepare the way for analysis, all the ***new datasets*** (all_dot1, all_dot2 and all_dot3) were merged to have one *final_data*. The shape of this was *(6517225, 15)*.
 
 This *final_data* was then explored and **Data Mapping** was performed on columns such as **TRDTYPE, DISAGMOT, COUNTRY, DF, USASTATE, MEXSTATE, CANPROV, COMMODITY2,** and **CONTCODE**. 
 - All states marked **'XX'** in the *MEXSTATE* column were mapped as **OT** (*Unknown*) since it does not have any matching state in the data dictionary.
