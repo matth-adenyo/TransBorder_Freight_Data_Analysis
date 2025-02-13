@@ -6,7 +6,7 @@ Project in Progress...
 ------------------------------------------------------------
 
 ---
-### Introduction:
+## Introduction
 Trans-border freight (the movement of goods across international boundaries) is a cornerstone of the global economy. It facilitates trade, fosters economic growth, and promotes cultural exchange. In the United States, the Bureau of Transportation Statistics (BTS) provides comprehensive data that underscores the significance of trans-border freight, particularly with neighbouring countries Canada and Mexico.
 
 According to BTS, in 2023, the United States earned $773.9 billion worth of total freight flows with Canada and $798.8 billion with Mexico, encompassing all modes of transportation. Trucking dominated these exchanges, accounting for 56% ($435.7 billion) of US - Canada trade and 70.2% ($560.6 billion) of US - Mexico trade. Rail transport also played a significant role, with $113.9 billion in trade with Canada and $95.4 billion with Mexico.
@@ -15,7 +15,7 @@ While trans-border freight is economically beneficial, it also poses environment
 
 The benefits of trans-border freight are undeniable, but, it is important to prioritize safety and sustainability to address environmental concerns and ensure the well-being of communities.
 
-### Problem Statement:
+## Problem Statement
 This Trans-Border Freight Data Analysis project aims to enhance the efficiency, sustainability, and safety of freight across North American borders. Given the increasing volume of goods transported across various modes (vessel, rail, air, truck, etc), there is a need to identify inefficiencies, reduce environmental impact, and ensure optimal economic performance. The key objective here is to identify inefficiencies, recognize patterns, and propose actionable solutions to improve overall performance and sustainability while minimizing delays, costs, and environmental hazards.
 
 ### Analytical Questions
@@ -24,7 +24,7 @@ This Trans-Border Freight Data Analysis project aims to enhance the efficiency, 
 - 3
 - 4
 
-### Overview of the Datasets
+## Overview of the Datasets
 The [dataset](https://azubiafrica-my.sharepoint.com/personal/emmanuel_agyen_azubiafrica_org/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Femmanuel%5Fagyen%5Fazubiafrica%5Forg%2FDocuments%2FTMP%2Fdata%2Ezip&parent=%2Fpersonal%2Femmanuel%5Fagyen%5Fazubiafrica%5Forg%2FDocuments%2FTMP&ga=1) is trans-border freight transportation data from 2020 to 2024, capturing various aspects of goods movement such as type of trade (Export or Import), mode of transportation (Truck, Air, Vessel, etc), US States, Mexican States, Canadian Province, commodity, US port, among others between the US - Canada, and US - Mexico.
 - **2020:** contains 9 sub-folders from January to September
 - **2021:** contains 12 sub-folders from January to December
@@ -82,14 +82,16 @@ Each of these sub-folders contains 3 to 6 different CSV dataset files. The CSV f
 
 These datasets provide insights into freight movement, trade patterns, transportation modes, costs, and geographic distributions of cross-border goods.
 
-### Data Inspection/Exploration
+## Data Inspection/Exploration
 The *dot1_MMYY, dot2_MMYY*, and *dot3_MMYY* are present in all the months for all the years. The *dot1_ytd_MMYY, dot2_ytd_MMYY*, and *dot3_ytd_MMYY* (where **MM** is the month, e.g January represented as **01** and **YY** is the last two digits of the year, e.g 2020 represented as **20**) are not present in some of the folders such as all months in 2024 and some months in 2023. In addition, March 2024 has only two datasets, *dot1_0324 and dot2_0324*. The dataset with **ytd** is cumulative. For example, **dot1_ytd_0420** in the April 2020 folder contains dataset from January 2020 to data. This means that to use the **ytd** data for analysis, one must use the one in the last month of that year since it is a cumulative dataset from the first month of that year to the last month of that same year.
 
 Furthermore, December 2022 contain additional datasets named *dot1_2022, dot2_2022*, and *dot3_2022* which don't have the month column. 
 
 In this project, dot1, dot2, and dot3 underscore the month and the year (that is **dot1_MMYY, dot2_MMYY, dot3_MMYY**) are used since they are the datasets that are consistent in all months of all years. All other datasets that don't follow this naming pattern are left out.
 
-### Data Reading
+**Excel** was then used to perform a preliminary inspection of some of the datasets where *filter* was applied to check for empty cells in important columns and data structure was also checked to see if each column contained the expected data type.
+
+## Data Reading
 This is a large dataset and when dealing with such datasets, loading everything into memory at once can put excessive pressure on system resources. This can lead to slow performance, memory errors, or even system crashes. To prevent this, the dataset is read in chunks rather than all at once.
 - First, instead of reading the full dataset, only a small sample is read (1000 rows) from *dot1_0420*. This was used to estimate how much memory a single row occupies without consuming too much memory upfront.
 - The total memory usage of the sample DataFrame was then computed and divided by 1000 to give the approximate memory consumption of a single row in bytes.
@@ -109,3 +111,10 @@ After concatenating all datasets, the shape of each was:
 - All dot1: (1500485, 14)
 - All dot2: (4101624, 14)
 - All dot3: (915116, 12)
+
+## Data Preparation
+To prepare the way analysis, all the ***new datasets*** (all_dot1, all_dot2 and all_dot3) were merged to have one *final_data*. The shape of this was *(6517225, 15)*.
+
+This *final_data* was then explored and **Data Mapping** was performed on columns such as **TRDTYPE, DISAGMOT, COUNTRY, DF, USASTATE, MEXSTATE, CANPROV, COMMODITY2,** and **CONTCODE**. 
+- All states marked **'XX'** in the *MEXSTATE* column were mapped as **OT** (*Unknown*) since it does not have any matching state in the data dictionary.
+- Similarly, all **'1'** in the *CONTCODE* column were mapped as **Unknown** as no match was found in the data dictionary.
