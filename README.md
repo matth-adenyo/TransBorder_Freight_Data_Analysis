@@ -2,10 +2,7 @@
 Trans-Border Freight Data Analysis using the CRISP-DM methodology
 
 ------------------------------------------------------------
-Project in Progress...
-------------------------------------------------------------
 
----
 ## Introduction
 Trans-border freight (the movement of goods across international boundaries) is a cornerstone of the global economy. It facilitates trade, fosters economic growth, and promotes cultural exchange. In the United States, the Bureau of Transportation Statistics (BTS) provides comprehensive data that underscores the significance of trans-border freight, particularly with neighbouring countries Canada and Mexico.
 
@@ -129,3 +126,17 @@ To prepare the way for analysis, all the ***new datasets*** (all_dot1, all_dot2 
 This *final_data* was then explored and **Data Mapping** was performed on columns such as **TRDTYPE, DISAGMOT, COUNTRY, DF, USASTATE, MEXSTATE, CANPROV, COMMODITY2,** and **CONTCODE**. 
 - All states marked **'XX'** in the *MEXSTATE* column were mapped as **OT** (*Unknown*) since it does not have any matching state in the data dictionary.
 - Similarly, all **'1'** in the *CONTCODE* column were mapped as **Unknown** as no match was found in the data dictionary.
+
+### Null Values
+Since all datasets have been merged, the number of *null* values has increased. This occurs because some datasets do not contain certain columns. For example:
+
+- **all_dot1** (1,500,485 rows) does not have the **COMMODITY2** column.
+- **all_dot2** (4,101,624 rows) does not include the **DEPE** column.
+- **all_dot3** (915,116 rows) lacks the **USASTATE**, **MEXSTATE**, and **CANPROV** columns.
+
+Also, whenever there is trade between the US - Mexican States, the  Canadian Province column will be *null* and vice versa.
+
+These missing columns introduce null values in the merged dataset but they won't be dropped since they won't affect the analysis.
+
+## Data Visualisation
+To answer the **analytical questions,** various visualisation plots such as bar plots, line charts, trend analysis, etc are taken into consideration.
