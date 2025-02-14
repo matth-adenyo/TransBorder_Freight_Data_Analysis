@@ -19,10 +19,21 @@ The benefits of trans-border freight are undeniable, but, it is important to pri
 This Trans-Border Freight Data Analysis project aims to enhance the efficiency, sustainability, and safety of freight across North American borders. Given the increasing volume of goods transported across various modes (vessel, rail, air, truck, etc), there is a need to identify inefficiencies, reduce environmental impact, and ensure optimal economic performance. The key objective here is to identify inefficiencies, recognize patterns, and propose actionable solutions to improve overall performance and sustainability while minimizing delays, costs, and environmental hazards.
 
 ### Analytical Questions
-- 1
-- 2
-- 3
-- 4
+- Which US states have the highest value of trade with Canada and Mexico?
+- Which US port or district has the highest value of trade with Canada and Mexico?
+- What is the contribution of trade value by country?
+- Is there any difference in the distribution of trade value by Export and Import?
+- What is the trade value by mode of transportation?
+- What are the top commodities transported across the U.S.-Canada and U.S.-Mexico borders, and how do they vary by mode of transportation?
+- What are the most frequently used modes of transportation for trans-border freight?
+- How has the volume of trans-border freight changed over the years?
+- What are the primary trends in freight movement across different transportation modes over the past five years?
+- How do economic disruptions (e.g., trade policies, global events) impact freight movement?
+- Which transportation mode has the highest inefficiencies in terms of cost, time, and environmental impact?
+- Which ports or districts experience the highest congestion or delays?
+- Which transportation modes have the highest carbon footprint based on freight weight and distance?
+- Are there underutilised transportation modes or routes that could be optimised?
+- What data-driven recommendations can be provided to improve cross-border freight transportation?
 
 ## Overview of the Datasets
 The [dataset](https://azubiafrica-my.sharepoint.com/personal/emmanuel_agyen_azubiafrica_org/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Femmanuel%5Fagyen%5Fazubiafrica%5Forg%2FDocuments%2FTMP%2Fdata%2Ezip&parent=%2Fpersonal%2Femmanuel%5Fagyen%5Fazubiafrica%5Forg%2FDocuments%2FTMP&ga=1) is trans-border freight transportation data from 2020 to 2024, capturing various aspects of goods movement such as type of trade (Export or Import), mode of transportation (Truck, Air, Vessel, etc), US States, Mexican States, Canadian Province, commodity, US port, among others between the US - Canada, and US - Mexico.
