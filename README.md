@@ -23,7 +23,7 @@ This Trans-Border Freight Data Analysis project aims to enhance the efficiency, 
 - Which US port or district has the highest value of trade with Canada and Mexico?
 - What is the contribution of trade value by country?
 - Is there any difference in the distribution of trade value by Export and Import?
-- What is the trade value by mode of transportation?
+- What is the total trade value by mode of transportation?
 - What are the top commodities transported across the U.S.-Canada and U.S.-Mexico borders, and how do they vary by mode of transportation?
 - What are the most frequently used modes of transportation for trans-border freight?
 - How has the volume of trans-border freight changed over the years?
