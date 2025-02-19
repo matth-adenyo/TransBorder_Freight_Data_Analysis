@@ -136,7 +136,110 @@ Since all datasets have been merged, the number of *null* values has increased. 
 
 Also, whenever there is trade between the US - Mexican States, the  Canadian Province column will be *null* and vice versa.
 
-These missing columns introduce null values in the merged dataset but they won't be dropped since they won't affect the analysis.
+These missing columns introduce null values in the merged dataset but were not dropped because they would not affect the analysis.
 
-## Data Visualisation
-To answer the **analytical questions,** various visualisation plots such as bar plots, line charts, trend analysis, etc are taken into consideration.
+## Methods Used in the Analysis
+Several methods and techniques were used in this analysis to extract insights from the dataset. Below is a list of them:
+- Data Mapping
+- Data Concatenation
+- Data Aggregation and Grouping
+- Data Sorting and Filtering
+- Data Visualisation
+- Congestion and Inefficiency Analysis
+- Trend Analysis
+- Seasonal Decomposition
+
+## Data Visualisation & Insights
+To answer the **analytical questions,** various visualisation plots such as bar plots, line charts, trend analysis, etc were used. Below are the insights from them:
+- Top U.S. states with the highest trade value with Canada and Mexico
+The overall U.S. state with the highest trade value was **Texas** with over **$2,815 billion** followed by **Michigan** and **California** with over **$1,251 billion** and **$1,151 billion** respectively.
+
+![image](https://github.com/user-attachments/assets/828652a1-7cb7-4097-8b55-de1c19ae49b3)
+
+Further digging indicates that **Texas** generate over **$2,258 billion,** **California** generate **$790 billion** and **Michigan** generate over **$652 billion,** all by trading with *Mexico* and the rest with *Canada.*
+
+![image](https://github.com/user-attachments/assets/b4283f11-0205-41a6-8397-1a2de819f05e)
+
+This highlight shows **Mexico** as the *leading trading partner* of the **U.S** with a little above **50%** while **Canada** has a little below **50%**.
+
+![image](https://github.com/user-attachments/assets/dc217fe2-b5cf-4833-9e06-dbe304df9270)
+
+- Export vs. Import
+Import Contributes over **$10,000 billion** trade value while Export contributes over **$8,000 billion** trade value.
+
+![image](https://github.com/user-attachments/assets/6b94c0fe-47c3-4445-b376-5ee4a4fbdeb4)
+
+Below is the breakdown country-wise:
+
+![image](https://github.com/user-attachments/assets/b20a7a90-33df-4845-9c4a-4ec90a49c436)
+
+- Trade by Port
+Ports in **Texas** dominate trades with **Laredo** leading with over **$2,449 billion** trade values followed by **Detroit** with **$1,246 billion**
+
+![image](https://github.com/user-attachments/assets/c3a64039-8a7b-4e11-a989-cfae609a6de7)
+
+- Trade by Mode of Transportation
+Truck transportation dominates cross-border trade, accounting for over **60%** of the total trade value. Rail and vessel transportation follow, with smaller shares. Pipeline transportation, while significant for certain commodities, represents a smaller portion of overall trade value.
+
+![image](https://github.com/user-attachments/assets/3c853fd6-d27a-4136-bb57-a63ddf099360)
+
+- Trade by Commodity Type
+The top commodities include vehicles, mineral fuels, nuclear reactors, and electrical and machinery equipment. These categories represent the backbone of U.S. cross-border trade, reflecting the strong industrial and manufacturing ties between the U.S., Canada, and Mexico.
+
+![image](https://github.com/user-attachments/assets/a7571937-d489-4033-aa85-75d89a4e501c)
+
+- U.S. - North American Freight Flows Over Time
+There was a steady increase in trade value from 2020 to 2024, with some seasonal fluctuations. The COVID-19 pandemic in 2020 caused a temporary dip in trade, but recovery was swift, and trade value rebounded strongly in 2021 and beyond. Consequently, 2024 also experienced a dip in trade value probably due to trade policy which may be caused by the presidential election.
+
+![image](https://github.com/user-attachments/assets/eeb571f1-8711-45c1-b8a3-bfe995ad6f50)
+
+A breakdown by country is shown below:
+
+![image](https://github.com/user-attachments/assets/2562f19e-8366-4f28-91a9-e3ba572072af)
+
+- Inefficiencies in Freight Flow
+The analysis reveals that shipments with zero reported weight (SHIPWT = 0) still incurred high freight charges. This suggests potential inefficiencies, such as misreported or missing shipment weight data, fixed-cost pricing models that do not account for shipment weight, excessive administrative, or other hidden costs. These were mostly between U.S. - Canada freight flow.
+
+![image](https://github.com/user-attachments/assets/43bab74e-ce7b-4c0f-984f-841e0017f20d)
+
+Further analysis reveals instances where truck transport incurred high freight charges despite no recorded shipment weight. This inefficiency may be due to the use of truck transport for low or zero-weight shipments, leading to wasteful spending or lack of load consolidation, causing trucks to run below capacity.
+
+![image](https://github.com/user-attachments/assets/ffd445ce-e4a0-4112-9e12-d53a818ebd90)
+
+Top 10 High-Cost Trade Routes (in Million USD) reveal significant cost variations across different transportation modes and trade routes. Pipeline transport between the U.S. and Canada accounts for the highest freight costs, likely due to infrastructure and maintenance expenses.
+
+![image](https://github.com/user-attachments/assets/00e50bdb-77d7-4aab-a43d-60be66fffa3c)
+
+- Congestion Analysis
+Analysing the transport route reveals that **pipeline** transport between the U.S. and Canada has the highest shipment weight suggesting *congestion* followed by **vessel** for Mexico and Canada.
+Overall, Vessel transport has the highest shipment weight.
+
+![image](https://github.com/user-attachments/assets/f850572e-582c-4fa5-9560-1056cc77ca65)
+
+By port-wise, ports in **Chicago** receive the highest freight flow through **pipelines.**
+
+![image](https://github.com/user-attachments/assets/af4ba44a-2538-493c-9708-002cb86671e5)
+
+- Under Utilizated Routes
+Hawaii to Mexico is the Least Utilized Route having the lowest shipment weight while Alaska to Mexico is the 10th most underutilized route.
+
+![image](https://github.com/user-attachments/assets/0da9bb87-b163-44c6-b211-e41ee9cd9d04)
+
+- Seasonal Decomposition
+To further understand freight flow, seasonal decomposition was performed. The result reveals that shipments follow a seasonal pattern and show a general increase but a dip in 2024. Significant residuals were also noticed in some places suggesting external factors affecting shipments beyond trend and seasonality.
+
+![image](https://github.com/user-attachments/assets/b2cf6869-c075-4848-9d28-dd413f8e2d89)
+
+## Environmental Impact
+Trucks have the largest carbon footprint contribution due to fuel consumption. The analysis reveals Trucks as the dominating mode of transport, even the count of Trucks with zero shipments was over 2 million.
+
+## Recommendations
+The following are recommended:
+- Investment should be made in rail infrastructure and underutilized routes to reduce congestion.
+- Greener fuel alternatives and carbon reduction strategies should be encouraged.
+- Rail transport should be optimized for cost-effective trade.
+- AI-driven logistics should be implemented for better freight management.
+- Trade policies should be harmonized to minimize delays and inefficiencies
+
+## Conclusion
+Addressing inefficiencies in trans-border freight is crucial for enhancing sustainability and economic performance. By leveraging data-driven strategies, trade flow can be optimized, environmental impact minimized, and cost-effectiveness improved. Additionally, continuous research and technological advancements are essential for ensuring long-term improvements in the efficiency and sustainability of freight operations.
