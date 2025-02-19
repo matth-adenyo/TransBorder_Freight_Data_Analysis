@@ -91,27 +91,27 @@ Each of these sub-folders contains 3 to 6 different CSV dataset files. The CSV f
 These datasets provide insights into freight movement, trade patterns, transportation modes, costs, and geographic distributions of cross-border goods.
 
 ## Data Inspection/Exploration
-The *dot1_MMYY, dot2_MMYY*, and *dot3_MMYY* are present in all the months for all the years. The *dot1_ytd_MMYY, dot2_ytd_MMYY*, and *dot3_ytd_MMYY* (where **MM** is the month, e.g January represented as **01** and **YY** is the last two digits of the year, e.g 2020 represented as **20**) are not present in some of the folders such as all months in 2024 and some months in 2023. In addition, March 2024 has only two datasets, *dot1_0324 and dot2_0324*. The dataset with **ytd** is cumulative. For example, **dot1_ytd_0420** in the April 2020 folder contains dataset from January 2020 to data. This means that to use the **ytd** data for analysis, one must use the one in the last month of that year since it is a cumulative dataset from the first month of that year to the last month of that same year.
+The *dot1_MMYY, dot2_MMYY*, and *dot3_MMYY* are present in all the months for all the years. The *dot1_ytd_MMYY, dot2_ytd_MMYY*, and *dot3_ytd_MMYY* (where **MM** is the month, e.g January represented as **01** and **YY** is the last two digits of the year, e.g 2020 represented as **20**) are not present in some of the folders such as all months in 2024 and some months in 2023. In addition, March 2024 has only two datasets, *dot1_0324 and dot2_0324*. The dataset with **ytd** is cumulative. For example, **dot1_ytd_0420** in the April 2020 folder contains datasets from January 2020 to data. This means that to use the **ytd** data for analysis, one must use the one in the last month of that year since it is a cumulative dataset from the first month of that year to the last month of that same year.
 
 Furthermore, December 2022 contain additional datasets named *dot1_2022, dot2_2022*, and *dot3_2022* which don't have the month column. 
 
 In this project, dot1, dot2, and dot3 underscore the month and the year (that is **dot1_MMYY, dot2_MMYY, dot3_MMYY**) are used since they are the datasets that are consistent in all months of all years. All other datasets that don't follow this naming pattern are left out.
 
-**Excel** was then used to perform a preliminary inspection of some of the datasets where *filter* was applied to check for empty cells in important columns and data structure was also checked to see if each column contained the expected data type.
+**Excel** was used to perform a preliminary inspection of some of the datasets where *filter* was applied to check for empty cells in important columns, data structure was also checked to see if each column contained the expected data type.
 
 ## Data Reading
-This is a large dataset and when dealing with such datasets, loading everything into memory at once can put excessive pressure on system resources. This can lead to slow performance, memory errors, or even system crashes. To prevent this, the dataset is read in chunks rather than all at once.
-- First, instead of reading the full dataset, only a small sample is read (1000 rows) from *dot1_0420*. This was used to estimate how much memory a single row occupies without consuming too much memory upfront.
+This is a large dataset and when dealing with such datasets, loading everything into memory at once can put excessive pressure on system resources. This can lead to slow performance, memory errors, or even system crashes. To avoid this, the dataset was read in chunks rather than all at once.
+- First, instead of reading the full dataset, only a small sample was read (1000 rows) from *dot1_0420*. This was used to estimate how much memory a single row occupies without consuming too much memory upfront.
 - The total memory usage of the sample DataFrame was then computed and divided by 1000 to give the approximate memory consumption of a single row in bytes.
 - **psutil** library was then used to get the total available system RAM and 10% of that was allocated as budget memory for reading datasets to prevent excessive memory consumption.
-- The chunksize was then calculated by dividing the *budget memory* by the *approximate memory consumption of the single row* to get the number of rows that can fit within the allocated 10% memory budget.
-- The chunksize was converted to *integer* to get a whole number.
+- The chunk size was then calculated by dividing the *budget memory* by the *approximate memory consumption of a single row* to get the number of rows that can fit within the allocated 10% memory budget.
+- The chunk size was converted to *integer* to get a whole number.
 
-After the above steps, next is to loop through all the folders to read the datasets. The folders in each year are named with the *first three letters of their month* and the datasets in them that I need for this project are named as **dot1-3_the month's number and last two digits of the year** (e.g. a data file in the folder *Jan 2020* inside the folder *2020* have the name *dot1_0120, dot2_0120,* and *dot3_0120*). To be able to read only these datasets from each folder, I mapped each month's name to its number (e.g. **Jan** as **01**, **Feb** as **02**), and extracted it together with the last two digits of the year.
+After the above steps, the next was to loop through all the folders to read the datasets. The folders in each year are named with the *first three letters of their month* and the datasets in them that I needed for this project were named as **dot1-3_the month's number and last two digits of the year** (e.g. a data file in the folder *Jan 2020* inside the folder *2020* have the name *dot1_0120, dot2_0120,* and *dot3_0120*). To be able to read only these datasets from each folder, I mapped each month's name to its number (e.g. **Jan** as **01**, **Feb** as **02**), and extracted it together with the last two digits of the year.
 
 Next, I used **For Loop** to iterate through the *year and months* folders to load only datasets that match the pattern **dot1-3** underscore the *extracted month's number and year number* with the help of **os** and **glob** library.
 
-Each dataset type (dot1, dot2 and dot3) is read in chunks and appended to the appropriate dataset type dictionary. Next, all dot1 were concatenated together, same as dot2 and dot3.
+Each dataset type (dot1, dot2 and dot3) was read in chunks and appended to the appropriate dataset type dictionary. Next, all dot1 were concatenated together, same as dot2 and dot3.
 
 While this was going on, the **tqdm** library was used to keep track of the progress.
 
@@ -151,7 +151,9 @@ Several methods and techniques were used in this analysis to extract insights fr
 
 ## Data Visualisation & Insights
 To answer the **analytical questions,** various visualisation plots such as bar plots, line charts, trend analysis, etc were used. Below are the insights from them:
-- Top U.S. states with the highest trade value with Canada and Mexico
+
+- **Top U.S. states with the highest trade value with Canada and Mexico**
+
 The overall U.S. state with the highest trade value was **Texas** with over **$2,815 billion** followed by **Michigan** and **California** with over **$1,251 billion** and **$1,151 billion** respectively.
 
 ![image](https://github.com/user-attachments/assets/828652a1-7cb7-4097-8b55-de1c19ae49b3)
@@ -164,7 +166,9 @@ This highlight shows **Mexico** as the *leading trading partner* of the **U.S** 
 
 ![image](https://github.com/user-attachments/assets/dc217fe2-b5cf-4833-9e06-dbe304df9270)
 
-- Export vs. Import
+
+- **Export vs. Import**
+
 Import Contributes over **$10,000 billion** trade value while Export contributes over **$8,000 billion** trade value.
 
 ![image](https://github.com/user-attachments/assets/6b94c0fe-47c3-4445-b376-5ee4a4fbdeb4)
@@ -173,22 +177,30 @@ Below is the breakdown country-wise:
 
 ![image](https://github.com/user-attachments/assets/b20a7a90-33df-4845-9c4a-4ec90a49c436)
 
-- Trade by Port
+
+- **Trade by Port**
+
 Ports in **Texas** dominate trades with **Laredo** leading with over **$2,449 billion** trade values followed by **Detroit** with **$1,246 billion**
 
 ![image](https://github.com/user-attachments/assets/c3a64039-8a7b-4e11-a989-cfae609a6de7)
 
-- Trade by Mode of Transportation
+
+- **Trade by Mode of Transportation**
+
 Truck transportation dominates cross-border trade, accounting for over **60%** of the total trade value. Rail and vessel transportation follow, with smaller shares. Pipeline transportation, while significant for certain commodities, represents a smaller portion of overall trade value.
 
 ![image](https://github.com/user-attachments/assets/3c853fd6-d27a-4136-bb57-a63ddf099360)
 
-- Trade by Commodity Type
+
+- **Trade by Commodity Type**
+
 The top commodities include vehicles, mineral fuels, nuclear reactors, and electrical and machinery equipment. These categories represent the backbone of U.S. cross-border trade, reflecting the strong industrial and manufacturing ties between the U.S., Canada, and Mexico.
 
 ![image](https://github.com/user-attachments/assets/a7571937-d489-4033-aa85-75d89a4e501c)
 
-- U.S. - North American Freight Flows Over Time
+
+- **U.S. - North American Freight Flows Over Time**
+
 There was a steady increase in trade value from 2020 to 2024, with some seasonal fluctuations. The COVID-19 pandemic in 2020 caused a temporary dip in trade, but recovery was swift, and trade value rebounded strongly in 2021 and beyond. Consequently, 2024 also experienced a dip in trade value probably due to trade policy which may be caused by the presidential election.
 
 ![image](https://github.com/user-attachments/assets/eeb571f1-8711-45c1-b8a3-bfe995ad6f50)
@@ -197,8 +209,10 @@ A breakdown by country is shown below:
 
 ![image](https://github.com/user-attachments/assets/2562f19e-8366-4f28-91a9-e3ba572072af)
 
-- Inefficiencies in Freight Flow
-The analysis reveals that shipments with zero reported weight (SHIPWT = 0) still incurred high freight charges. This suggests potential inefficiencies, such as misreported or missing shipment weight data, fixed-cost pricing models that do not account for shipment weight, excessive administrative, or other hidden costs. These were mostly between U.S. - Canada freight flow.
+
+- **Inefficiencies in Freight Flow**
+
+The analysis reveals that shipments with zero reported weight (SHIPWT = 0) still incurred high freight charges. This suggests potential inefficiencies, such as misreported or missing shipment weight data, fixed-cost pricing models that do not account for shipment weight, excessive administrative, or other hidden costs. These were mostly between the U.S. and Canada.
 
 ![image](https://github.com/user-attachments/assets/43bab74e-ce7b-4c0f-984f-841e0017f20d)
 
@@ -210,8 +224,11 @@ Top 10 High-Cost Trade Routes (in Million USD) reveal significant cost variation
 
 ![image](https://github.com/user-attachments/assets/00e50bdb-77d7-4aab-a43d-60be66fffa3c)
 
-- Congestion Analysis
+
+- **Congestion Analysis**
+
 Analysing the transport route reveals that **pipeline** transport between the U.S. and Canada has the highest shipment weight suggesting *congestion* followed by **vessel** for Mexico and Canada.
+
 Overall, Vessel transport has the highest shipment weight.
 
 ![image](https://github.com/user-attachments/assets/f850572e-582c-4fa5-9560-1056cc77ca65)
@@ -220,15 +237,20 @@ By port-wise, ports in **Chicago** receive the highest freight flow through **pi
 
 ![image](https://github.com/user-attachments/assets/af4ba44a-2538-493c-9708-002cb86671e5)
 
-- Under Utilizated Routes
+
+- **Under Utilizated Routes**
+
 Hawaii to Mexico is the Least Utilized Route having the lowest shipment weight while Alaska to Mexico is the 10th most underutilized route.
 
 ![image](https://github.com/user-attachments/assets/0da9bb87-b163-44c6-b211-e41ee9cd9d04)
 
-- Seasonal Decomposition
+
+- **Seasonal Decomposition**
+
 To further understand freight flow, seasonal decomposition was performed. The result reveals that shipments follow a seasonal pattern and show a general increase but a dip in 2024. Significant residuals were also noticed in some places suggesting external factors affecting shipments beyond trend and seasonality.
 
 ![image](https://github.com/user-attachments/assets/b2cf6869-c075-4848-9d28-dd413f8e2d89)
+
 
 ## Environmental Impact
 Trucks have the largest carbon footprint contribution due to fuel consumption. The analysis reveals Trucks as the dominating mode of transport, even the count of Trucks with zero shipments was over 2 million.
