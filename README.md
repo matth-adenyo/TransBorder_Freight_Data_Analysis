@@ -33,7 +33,7 @@ This Trans-Border Freight Data Analysis project aims to enhance the efficiency, 
 - What data-driven recommendations can be provided to improve cross-border freight transportation?
 
 ## Overview of the Datasets
-The [dataset](https://azubiafrica-my.sharepoint.com/personal/emmanuel_agyen_azubiafrica_org/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Femmanuel%5Fagyen%5Fazubiafrica%5Forg%2FDocuments%2FTMP%2Fdata%2Ezip&parent=%2Fpersonal%2Femmanuel%5Fagyen%5Fazubiafrica%5Forg%2FDocuments%2FTMP&ga=1) is trans-border freight transportation data from 2020 to 2024, capturing various aspects of goods movement such as type of trade (Export or Import), mode of transportation (Truck, Air, Vessel, etc), US States, Mexican States, Canadian Province, commodity, US port, among others between the US - Canada, and US - Mexico.
+The [dataset](https://drive.google.com/file/d/1mhMI5kewV6ld-enK2o8mGs7CGFCRjRms/view?usp=sharing) is trans-border freight transportation data from 2020 to 2024, capturing various aspects of goods movement, such as type of trade (Export or Import), mode of transportation (Truck, Air, Vessel, etc.), US States, Mexican States, Canadian Province, commodity, and US ports, among others, between the US—Canada and US—Mexico.
 - **2020:** contains 9 sub-folders from January to September
 - **2021:** contains 12 sub-folders from January to December
 - **2022:** contains 12 sub-folders from January to December
